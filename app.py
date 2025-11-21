@@ -4,7 +4,7 @@ from archivos import *
 from servicios import *
 
 def main():
-    bd = []
+    inventario = []
 
     while True:
         print("\n===== Inventario avanzado =====")
@@ -19,12 +19,30 @@ def main():
 
         opcion = input("Seleccione la opcion: ")
 
-        if opcion.isdecimal():
+        if not opcion.isdecimal():   
             print("Opcion invalida")
             continue
 
         opcion = int(opcion)
 
+
         if opcion == 1:
-            name = input("Ingrese el nombre del producto: ")
-            
+            nombre = str(input("Ingrese el nombre del producto: "))
+            try:
+                precio = float(input("Ingrese el precio del producto: "))
+                cantidad = int(input("Ingrese la cantidad del producto: "))
+            except ValueError:
+                print("el precio y cantidad deben ser numericos.")
+                continue
+
+            agregar_producto(inventario, nombre, precio, cantidad)
+
+        elif opcion == 2:
+            mostrar_inventario(inventario)
+
+
+
+
+
+if __name__ == "__main__":
+    main()
